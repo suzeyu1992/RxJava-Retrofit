@@ -15,8 +15,9 @@ import retrofit2.http.Url;
 /**
  * Created by suzeyu on 16/7/19.
  */
-                                                public interface ITestAPI {
-                                                    @FormUrlEncoded
-                                                    @POST("demo/")
-                                                    Call<RequestBody> send(@Field("name") String first,@Field("id") String id);
-                                                }
+public interface ITestAPI {
+    @FormUrlEncoded
+    @POST("demo/")
+    Call<RequestBody> send(@Field("name") String first, @Field("id") String id);
+
+}

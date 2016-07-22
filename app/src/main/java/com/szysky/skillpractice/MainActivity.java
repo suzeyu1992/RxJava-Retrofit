@@ -9,10 +9,12 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.szysky.skillpractice.data.PhoneResultBean;
 import com.szysky.skillpractice.retorfit.IPhoneServer;
 import com.szysky.skillpractice.retorfit.ITestAPI;
+import com.szysky.skillpractice.rxjava.test;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,17 +62,8 @@ public class MainActivity extends AppCompatActivity {
         JobScheduler job = null;
 
 
+        test test = new test(getApplicationContext());
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        textAPI();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });//.start();
 
 
     }
@@ -92,15 +85,15 @@ public class MainActivity extends AppCompatActivity {
         mMaps.put("language","java");
 
 
-                                                // 1.创建Retrofit对象
-                                                Retrofit retrofit = new Retrofit.Builder()
-                                                        .client(okhttpClient)
-                                                        .addConverterFactory(GsonConverterFactory.create())     //处理返回数据的解析方式
-                                                        .baseUrl("http://apis.baidu.com/")
-                                                        .build();
+        // 1.创建Retrofit对象
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(okhttpClient)
+                .addConverterFactory(GsonConverterFactory.create())     //处理返回数据的解析方式
+                .baseUrl("http://apis.baidu.com/")
+                .build();
 
-                                                ITestAPI iTestAPI = retrofit.create(ITestAPI.class);
-                                                iTestAPI.send("master","1234").execute();
+        ITestAPI iTestAPI = retrofit.create(ITestAPI.class);
+        iTestAPI.send("master","1234").execute();
     }
 
 
@@ -123,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 .client(okhttpClient)
                 .addConverterFactory(GsonConverterFactory.create())     //处理返回数据的解析方式
                 .baseUrl(BASE_URL)
+                .baseUrl("http://www.qq.com/")
                 .build();
 
         //2.创建访问API的请求
